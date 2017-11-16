@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VideGo.Models;
+using VideGo.ViewModels;
 
 namespace VideGo.Controllers
 {
@@ -15,8 +16,19 @@ namespace VideGo.Controllers
 
             var movie = new Movie() { Name = "Alien: Covenant" };
 
-            //return View(movie);
-            return Content("Hello World");
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Brian" },
+                new Customer { Name = "Todd" }
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Edit(int id)
@@ -35,6 +47,7 @@ namespace VideGo.Controllers
             return Content(String.Format("pageIndex={0}&sortBy{1}",pageIndex, sortBy));
         }
 
+        [Route("movies/released/{year}/{month}")]
         public ActionResult byReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
