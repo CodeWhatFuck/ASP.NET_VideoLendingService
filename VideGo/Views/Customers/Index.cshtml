@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
-
 
 @if (Model.Customers.Count == 0)
 {
@@ -17,14 +15,14 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th> Customers</th>
+                <th><h2>Customers</h2></th>
             </tr>
         </thead>
 
         @foreach (var customer in Model.Customers)
         {
             <tr>
-                <td><a href="#">@customer.Name</a></td>
+                <td><a href="Customers/Details/@customer.Id">@customer.Name</a></td>
             </tr>
         }
                
